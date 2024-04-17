@@ -1,3 +1,8 @@
+<script>
+import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
+injectSpeedInsights();
+</script>
+
 <nav>
 	<a href="/">Home</a>
 	<a href="/about">About</a>

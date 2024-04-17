@@ -1,6 +1,6 @@
 <script>
 	let visible = false;
-
+	export let data;
 	const showHint = () => {
 		visible = !visible;
 	};
