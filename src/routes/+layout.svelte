@@ -7,6 +7,7 @@ injectSpeedInsights();
 	<a href="/">Home</a>
 	<a href="/about">About</a>
 	<a href="/settings">Settings</a>
+	<a href="/leaderboard">Leaderboard</a>
 	<a class="right" href="/login">Login</a>
 </nav>
 <div id="meta">
