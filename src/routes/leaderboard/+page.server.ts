@@ -1,7 +1,8 @@
 import { sql } from "@vercel/postgres";
 
 export async function load() {
+  const data =  await sql`SELECT * from score ORDER BY score DESC`;
   return {
-    score: await sql`SELECT * from score'`
+    score: data.rows,
   }
 }

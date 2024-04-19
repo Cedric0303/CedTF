@@ -1,5 +1,10 @@
-<script>
+<script lang=ts>
+	import { userStore } from './stores';
 	let visible = false;
+	let user;
+	userStore.subscribe((value) => {
+		user = value;
+	})
 	const showHint = () => {
 		visible = !visible;
 	};
@@ -19,6 +24,9 @@
 <p>
 	Try and find all the flags 🏳️ on this website, good luck! <small>(there are 5 in total)</small>
 </p>
+{#if user}
+<p>Hi {{ user }}</p>
+{/if}
 
 <br /><br /><br /><br /><br />
 <button class="button" on:click={showHint}>hint</button>

@@ -1,17 +1,22 @@
-<script>
-  let dark = true;
+<script lang=ts>
 
+  import { darkStore } from '../stores';
+  let dark;
+
+  darkStore.subscribe((value) => {
+    dark = value;
+  })
+  
   const toggleLight = () => {
     window.document.body.classList.toggle('light-mode')
     dark = !dark;
+    darkStore.set(dark);
+    console.log('set')
   }
 
-  let showFlag = false;
-
-	const toggleNightVision = () => {
+	const toggleAdmin = () => {
     const meta = window.document.getElementById('meta');
-    meta.style.opacity = (meta.style.opacity === '1') ? '0' : '1';
-		showFlag = true;
+    meta.style.display = (meta.style.display === 'inline') ? 'none' : 'inline';
 	};
 </script>
 
@@ -20,9 +25,6 @@
 <div class="setting">
     <div class="each-setting">Dark mode </div><button on:click={toggleLight}>Toggle</button>
 </div>
-<!-- <div class="setting">
-  <div class="each-setting">Admin mode </div><button on:click={toggleAdmin}>Toggle</button>
-</div> -->
 <div class="setting">
-  <div class="each-setting">Night vision </div><button on:click={toggleNightVision}>Toggle</button>
+  <div class="each-setting">Admin mode </div><button on:click={toggleAdmin}>Toggle</button>
 </div>

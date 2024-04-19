@@ -1,4 +1,4 @@
-<script>
+<script lang=ts>
 import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 import { inject } from '@vercel/analytics'
 injectSpeedInsights();
@@ -10,7 +10,8 @@ inject();
 	<a href="/about">About</a>
 	<a href="/settings">Settings</a>
 	<a href="/leaderboard">Leaderboard</a>
-	<a class="right" href="/login">Login</a>
+  <a href="/admin" id="meta">Admin</a>
+	<a class="right" href="/user">User</a>
 </nav>
 <div id="meta">
 	<small>FLAG: brav0_s1x_g01ng_dark</small>
@@ -69,7 +70,7 @@ inject();
 }
 
 :global(#meta) {
-  opacity: 0;
+  display: none;
 }
 
 :global(.right) {
