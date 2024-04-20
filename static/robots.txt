@@ -1,0 +1,8 @@
+User-agent: *
+
+Disallow: /about
+Disallow: /admin
+Disallow: /flag
+Disallow: /leaderboard
+Disallow: /settings
+Disallow: /user

@@ -1,4 +1,4 @@
-<script>
+<script lang=ts>
   import FLAGS from '../../flags'
   const flag = FLAGS.FLAGS[1]
   async function deleteDatabase() {

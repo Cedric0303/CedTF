@@ -1,9 +1,8 @@
 <script lang=ts>
-	import { deserialize  } from '$app/forms';
+	import { deserialize } from '$app/forms';
   import { browser } from "$app/environment";
   import FLAGS from '../../flags'
   import { onMount } from 'svelte';
-  
   
   const flag = FLAGS.FLAGS[2];
   
@@ -27,7 +26,6 @@
     name = '';
     userStore.update(() => null);
     localStorage.removeItem('user');
-    await ref.focus();
   }
   
   async function createUser(e) {
@@ -81,8 +79,6 @@
   onMount(() => {
     if (!user) ref.focus();
     if (user) ref2.focus();
-  });   
-  onMount(() => {
   });   
 </script>
 

@@ -13,7 +13,7 @@ inject();
   <a href="/admin" id="meta">Admin</a>
 	<a class="right" href="/user">User</a>
 </nav>
-
+  
 <slot></slot>
 
 <style>
@@ -102,5 +102,11 @@ inject();
 :global(.each-setting) {
   margin: auto 0;
   width: 8rem;
+}
+
+:global(footer) {
+  position: absolute;
+  bottom: 0;
+  width: 85%;
 }
 </style>

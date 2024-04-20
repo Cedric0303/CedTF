@@ -7,19 +7,19 @@
     dark = value;
   })
   
-  const toggleLight = () => {
+  const toggleLight =  () => {
     window.document.body.classList.toggle('light-mode')
     dark = !dark;
     darkStore.set(dark);
     console.log('set')
   }
 
-	const toggleAdmin = () => {
+	const toggleAdmin = async () => {
     const meta = window.document.getElementById('meta');
     meta.style.display = (meta.style.display === 'inline') ? 'none' : 'inline';
 	};
 
-  const toggleSerious = () => {
+  const toggleSerious = async () => {
     const body = document.body;
     if (!body.style.fontFamily.length) {
       body.style.fontFamily = 'Comic Sans MS';
