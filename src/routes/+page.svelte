@@ -10,7 +10,7 @@
 	};
 </script>
 
-<h1>Welcome to C<small><small><small><small><small>ed</small></small></small></small></small>TF</h1>
+<h1>Welcome to C<small><small><small><small>ed</small></small></small></small>T F</h1>
 <h3><u>First thing first, what is a CTF?</u></h3>
 <p>
 	Capture the Flag (CTF) in computer security is an exercise in which participants attempt to find
@@ -27,8 +27,6 @@
 {#if user}
 <p>Hi { user }!</p>
 {/if}
-
-<br /><br /><br /><br /><br />
 <button class="button" on:click={showHint}>hint</button>
 {#if visible}
 	<small>Inspect the page (F12)</small>

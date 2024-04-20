@@ -13,9 +13,6 @@ inject();
   <a href="/admin" id="meta">Admin</a>
 	<a class="right" href="/user">User</a>
 </nav>
-<div id="meta">
-	<small>FLAG: brav0_s1x_g01ng_dark</small>
-</div>
 
 <slot></slot>
 
@@ -34,6 +31,20 @@ inject();
   color: black;
 }
 
+:global(button) {
+  margin-top: 1rem;
+  margin-left: 0;
+  transition: background-color linear 0.2s;
+}
+
+:global(button:disabled) {
+  background-color: grey;
+  cursor: default;
+}
+
+:global(p) {
+  width: 50%;
+}
 
 :global(a) {
   color: inherit;
@@ -50,7 +61,7 @@ inject();
 }
 
 :global(button) {
-  font-family: 'Fira Mono';
+  font-family: inherit;
   background-color: #00ff41;
   border: none;
   color: black;
@@ -67,6 +78,11 @@ inject();
 :global(body.light-mode) :global(button) {
   background-color: black;
   color: white;
+}
+
+:global(body.light-mode) :global(button:disabled) {
+  background-color: grey;
+  cursor: default;
 }
 
 :global(#meta) {
