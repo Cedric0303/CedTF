@@ -10,7 +10,8 @@
 	};
 </script>
 
-<h1>Welcome to C<small><small><small><small>ed</small></small></small></small>T F</h1>
+<h1>Welcome to C<small><small><small>ed</small></small></small>T F</h1>
+<br />
 <h3><u>First thing first, what is a CTF?</u></h3>
 <p>
 	Capture the Flag (CTF) in computer security is an exercise in which participants attempt to find
