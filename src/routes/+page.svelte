@@ -25,7 +25,7 @@
 	Try and find all the flags 🏳️ on this website, good luck! <small>(there are 5 in total)</small>
 </p>
 {#if user}
-<p>Hi {{ user }}</p>
+<p>Hi { user }!</p>
 {/if}
 
 <br /><br /><br /><br /><br />
