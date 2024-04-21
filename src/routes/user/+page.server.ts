@@ -8,17 +8,13 @@ export const actions = {
 		if (name !== 'god') {
 			const usersQuery = await sql`SELECT * from score WHERE user_id=${name}`;
 			const userExist = usersQuery.rows.length;
-			if (userExist) {
-				return {
-					success: false,
-					message: "User already exist!",
-				}
-			}
-			const insertUser = await sql`INSERT INTO score VALUES (${name}, 0); `;
-			if (!insertUser.rowCount) {
-				return {
-					success: false,
-					message: 'Error inserting user!\nPlease try again!',
+			if (!userExist) {
+				const insertUser = await sql`INSERT INTO score VALUES (${name}, 0); `;
+				if (!insertUser.rowCount) {
+					return {
+						success: false,
+						message: 'Error inserting user!\nPlease try again!',
+					}
 				}
 			}
 		}

@@ -1,5 +1,4 @@
 <script lang=ts>
-
   import { darkStore } from '../stores';
   let dark;
 
@@ -11,7 +10,6 @@
     window.document.body.classList.toggle('light-mode')
     dark = !dark;
     darkStore.set(dark);
-    console.log('set')
   }
 
 	const toggleAdmin = async () => {

@@ -30,7 +30,6 @@
   
   async function createUser(e) {
     const data = new FormData(e.currentTarget);
-    console.log(data, `${e.currentTarget.action}`);
     const response = await fetch(`${e.currentTarget.action}`, {
 			method: 'POST',
 			body: data
@@ -52,14 +51,12 @@
 
   async function submitFlag(e) {
     const data = new FormData(e.currentTarget);
-    console.log(data, `${e.currentTarget.action}`);
     const response = await fetch(`${e.currentTarget.action}`, {
       method: 'POST',
 			body: data
 		});
     
     const result = deserialize(await response.text());
-    console.log(result)
     
     const { success } = result.data;
     if (!success) {
@@ -76,10 +73,10 @@
       foundFlag = false;
     }, 10000);
   }
-  onMount(() => {
-    if (!user) ref.focus();
-    if (user) ref2.focus();
-  });   
+  // onMount(() => {
+  //   if (!user) ref.focus();
+  //   if (user) ref2.focus();
+  // });
 </script>
 
 <h1>User</h1>
