@@ -9,7 +9,8 @@
 		visible = !visible;
 	};
 </script>
-
+<br />
+<br />
 <h1>Welcome to C<small><small><small>ed</small></small></small>T F</h1>
 <br />
 <h3><u>First thing first, what is a CTF?</u></h3>
@@ -34,5 +35,5 @@
 {/if}
 
 <footer>
-  <p>In compliance with web standards, please be aware that our website utilizes a robots.txt file to guide search engine crawlers on what content to access and index.<br />You can view our robots.txt file <a href="/robots.txt" target="_blank">here</a>.</p>
+  <small>In compliance with web standards, please be aware that our website utilizes a robots.txt file to guide search engine crawlers on what content to access and index. You can view our robots.txt file <a href="/robots.txt" target="_blank">here</a>.</small>
 </footer>

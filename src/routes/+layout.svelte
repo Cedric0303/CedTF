@@ -1,8 +1,22 @@
 <script lang=ts>
 import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 import { inject } from '@vercel/analytics'
+import { browser } from "$app/environment";
+import { onMount } from "svelte";
+
+import { userStore, godStore } from './stores';
+
 injectSpeedInsights();
 inject();
+
+onMount(() => {
+    if (browser && localStorage.getItem('user')) {
+      userStore.update(() =>  localStorage.getItem('user'));
+    }
+    if (browser && localStorage.getItem('god')) {
+      godStore.update(() =>  localStorage.getItem('god'));
+    }
+  })
 </script>
 
 <nav>
@@ -17,18 +31,30 @@ inject();
 <slot></slot>
 
 <style>
-  :global(body) {
+:global(#canvas) {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -10000;
+  height: 100vh;
+  opacity: 50%;
+}
+
+
+:global(body) {
   background-color: black;
   font-family: 'Fira Mono';
   font-variant-ligatures: normal;
   font-feature-settings: normal;
   color: #00ff41;
   transition: background-color 0.2s;
-}
-
-:global(body.light-mode) {
-  background-color: white;
-  color: black;
+  margin:0;
+  padding:0;
+  height:100%;
+  width:100%;
+  overflow: hidden;
 }
 
 :global(button) {
@@ -55,11 +81,6 @@ inject();
   text-decoration: none;
 }
 
-:global(body.light-mode) :global(u) {
-  border-bottom: 1px dashed black;
-  text-decoration: none;
-}
-
 :global(button) {
   font-family: inherit;
   background-color: #00ff41;
@@ -73,16 +94,6 @@ inject();
   cursor: pointer;
   display: inline-block;
   margin-left: 1rem;
-}
-
-:global(body.light-mode) :global(button) {
-  background-color: black;
-  color: white;
-}
-
-:global(body.light-mode) :global(button:disabled) {
-  background-color: grey;
-  cursor: default;
 }
 
 :global(#meta) {
@@ -107,6 +118,8 @@ inject();
 :global(footer) {
   position: absolute;
   bottom: 0;
-  width: 85%;
+  width: 30%;
+  right: 0;
+  text-align: right;
 }
 </style>
