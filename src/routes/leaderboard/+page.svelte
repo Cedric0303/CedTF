@@ -3,8 +3,9 @@
 </script>
 
 <h1>Leaderboard</h1>
-<div>
+<div class="leaderboard">
 {#each data.score as { user_id, score } (user_id)}
   <div>{user_id} - {score}</div>
+  <br />
 {/each}
 </div>

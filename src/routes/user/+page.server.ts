@@ -1,5 +1,5 @@
 import { sql } from "@vercel/postgres";
-import FLAGS from '../../flags.json'
+import FLAGS from '../../flags.json';
 /** @type {import('./$types').Actions} */
 export const actions = {
 	login: async ({request}) => {

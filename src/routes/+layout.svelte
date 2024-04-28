@@ -198,4 +198,14 @@ onMount(() => {
   border: none;
   outline: none;
 }
+
+:global(.errorImage) {
+  justify-content: center;
+  text-align: center;
+}
+
+:global(.leaderboard) {
+  margin-top: 2%;
+  margin-left: 2%;
+}
 </style>
