@@ -4,7 +4,7 @@
 </script>
 <h1>Flag</h1>
 <div class="errorImage">
-  <img src='shopkeeper.png' alt='Dota 2 shopkeeper'/>
+  <img src='shopkeeper.webp' alt='Dota 2 shopkeeper'/>
   <br />
   <br />
   <br />
