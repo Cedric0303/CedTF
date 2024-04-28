@@ -102,6 +102,10 @@ onMount(() => {
   opacity: 50%;
 }
 
+:global(nav > a) {
+  font-size: 20px;
+  margin: 0 10px 10px 0;
+}
 
 :global(body) {
   background-color: black;
@@ -110,11 +114,11 @@ onMount(() => {
   font-feature-settings: normal;
   color: #00ff41;
   transition: background-color 0.2s;
-  margin:0;
-  padding:0;
-  height:100%;
-  width:100%;
+  margin: 10px;
+  height: 100%;
+  width: 99%;
   overflow: hidden;
+  /* padding: 10px; */
 }
 
 :global(button) {
@@ -181,6 +185,8 @@ onMount(() => {
   width: 30%;
   right: 0;
   text-align: right;
+  padding-bottom: 20px;
+  padding-right: 20px;
 }
 
 :global(input) {

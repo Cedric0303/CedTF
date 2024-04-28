@@ -10,8 +10,6 @@
 	};
 </script>
 
-<br />
-<br />
 <h1>Welcome to C<small><small><small>ed</small></small></small>T F</h1>
 <br />
 <h3><u>First thing first, what is a CTF?</u></h3>
