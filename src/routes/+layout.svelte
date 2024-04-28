@@ -1,13 +1,57 @@
 <script lang=ts>
 import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 import { inject } from '@vercel/analytics'
-import { browser } from "$app/environment";
-import { onMount } from "svelte";
-
-import { userStore, godStore } from './stores';
 
 injectSpeedInsights();
 inject();
+
+import { deserialize } from '$app/forms';
+import { browser } from "$app/environment";
+import { onMount } from "svelte";
+import { userStore, godStore } from './stores';
+
+let user;
+let god;
+let flagInput = '';
+let wrongFlag = false;
+let foundFlag = false;
+
+userStore.subscribe((value) => {
+  user = value;
+  if (browser && user && !localStorage.getItem('user')) localStorage.setItem('user', user);
+});
+godStore.subscribe((value) => {
+  god = value;
+  if (browser && god && !localStorage.getItem('god')) localStorage.setItem('god', god);
+});
+
+async function submit(e) {
+  const data = new FormData(e.currentTarget);
+  const response = await fetch(`${e.currentTarget.action}`, {
+    method: 'POST',
+    body: data
+  });
+  
+  const result = deserialize(await response.text());
+  
+  const { success } = result.data;
+
+  if (!success) {
+    wrongFlag = true;
+    foundFlag = false;
+    setTimeout(() => {
+      flagInput = '';
+      wrongFlag = false;
+    }, 8000);
+    return;
+  }
+  foundFlag = true;
+  wrongFlag = false;
+  setTimeout(() => {
+    flagInput = '';
+    foundFlag = false;
+  }, 8000);
+  }
 
 onMount(() => {
     if (browser && localStorage.getItem('user')) {
@@ -27,6 +71,22 @@ onMount(() => {
   <a href="/admin" id="meta">Admin</a>
 	<a class="right" href="/user">User</a>
 </nav>
+{#if user}
+  <form method="POST" action="user?/submit" on:submit|preventDefault={ submit }>
+    <div style="display: block;height: 20%;">
+      <label for={flagInput}>Submit flag: </label>
+      <input bind:value={ flagInput } name="flag" type="text" id={ flagInput } placeholder="Enter flag">
+      <input type="hidden" id="name" name="user" value={ user }> 
+      <button disabled={!flagInput.length}>Submit</button>
+      {#if wrongFlag}
+        <small style="color:red;margin-left:10px">Wrong flag!</small>
+      {/if}
+      {#if foundFlag}
+        <small style="color:#00ff41;margin-left:10px">Congratulation, you found one of the flags!</small>
+      {/if}
+    </div>
+  </form>
+{/if}
   
 <slot></slot>
 
@@ -121,5 +181,21 @@ onMount(() => {
   width: 30%;
   right: 0;
   text-align: right;
+}
+
+:global(input) {
+  border: 0;
+  background-color: black;
+  font-family: inherit;
+  font-size: 16px;
+  width: 20rem;
+  color:white;
+}
+
+:global(input:focus) {
+  background-color: black;
+  color: white;
+  border: none;
+  outline: none;
 }
 </style>
