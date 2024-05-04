@@ -32,7 +32,3 @@
 {#if visible}
 	<small>Inspect the page (F12)</small>
 {/if}
-
-<footer>
-  <small>In compliance with web standards, please be aware that our website utilizes a robots.txt file to guide search engine crawlers on what content to access and index. You can view our robots.txt file <a href="/robots.txt" target="_blank">here</a>.</small>
-</footer>

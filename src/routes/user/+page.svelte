@@ -5,18 +5,23 @@
   
   const flag = FLAGS.FLAGS[2];
   
-  import { userStore, godStore } from '../stores';
+  import { userStore, godStore, doneStore } from '../stores';
   let user;
   let god;
+  let done;
   let name = '';
 
   userStore.subscribe((value) => {
     user = value;
-    if (browser && user && !localStorage.getItem('user')) localStorage.setItem('user', user);
+    if (browser && user) localStorage.setItem('user', user);
 	});
   godStore.subscribe((value) => {
     god = value;
-    if (browser && god && !localStorage.getItem('god')) localStorage.setItem('god', god);
+    if (browser && god) localStorage.setItem('god', god);
+	});
+  doneStore.subscribe((value) => {
+    done = value;
+    if (browser && done) localStorage.setItem('done', done);
 	});
   
   async function logout() {
@@ -25,6 +30,7 @@
     godStore.update(() => null);
     localStorage.removeItem('user');
     localStorage.removeItem('god');
+    localStorage.removeItem('done');
   }
   
   async function login(e) {
@@ -36,23 +42,29 @@
     /** @type {import('@sveltejs/kit').ActionResult} */
     const result = deserialize(await response.text());
 
-    const { success, user: returnUser, message } = result.data;
+    const { success, user: returnUser, message, done } = result.data;
     if (!success) {
       window.alert(message);
       name = '';
       userStore.update(() => null);
       godStore.update(() => null);
+      doneStore.update(() => null);
       localStorage.removeItem('user');
       localStorage.removeItem('god');
+      localStorage.removeItem('done');
       console.log(god, user)
       return;
     }
     if (returnUser === 'god') {
       godStore.update(() => returnUser);
-      return;
     } else {
       userStore.update(() => returnUser);
-      return;
+    }
+    console.log(done)
+    if (done) {
+      doneStore.update(() => 'true');
+    } else {
+      doneStore.update(() => null)
     }
   }
 </script>

@@ -8,11 +8,13 @@ inject();
 import { deserialize } from '$app/forms';
 import { browser } from "$app/environment";
 import { onMount } from "svelte";
-import { userStore, godStore } from './stores';
+import { userStore, godStore, doneStore } from './stores';
 
 let user;
 let god;
+let done;
 let flagInput = '';
+let flagMessage = '';
 let wrongFlag = false;
 let foundFlag = false;
 
@@ -24,6 +26,10 @@ godStore.subscribe((value) => {
   god = value;
   if (browser && god && !localStorage.getItem('god')) localStorage.setItem('god', god);
 });
+doneStore.subscribe((value) => {
+  done = value;
+  if (browser && done && !localStorage.getItem('done')) localStorage.setItem('done', done);
+});
 
 async function submit(e) {
   const data = new FormData(e.currentTarget);
@@ -34,24 +40,33 @@ async function submit(e) {
   
   const result = deserialize(await response.text());
   
-  const { success } = result.data;
+  const { success, message, done } = result.data;
 
   if (!success) {
     wrongFlag = true;
     foundFlag = false;
+    flagMessage = message;
     setTimeout(() => {
       flagInput = '';
       wrongFlag = false;
+      flagMessage = '';
     }, 8000);
     return;
   }
   foundFlag = true;
   wrongFlag = false;
+  flagMessage = message;
   setTimeout(() => {
     flagInput = '';
     foundFlag = false;
+    flagMessage = '';
   }, 8000);
+  if (done) {
+    doneStore.update(() => 'true');
+  } else {
+    doneStore.update(() => null)
   }
+}
 
 onMount(() => {
     if (browser && localStorage.getItem('user')) {
@@ -59,6 +74,9 @@ onMount(() => {
     }
     if (browser && localStorage.getItem('god')) {
       godStore.update(() =>  localStorage.getItem('god'));
+    }
+    if (browser && localStorage.getItem('done')) {
+      doneStore.update(() =>  localStorage.getItem('done'));
     }
   })
 </script>
@@ -71,7 +89,7 @@ onMount(() => {
   <a href="/admin" id="meta">Admin</a>
 	<a class="right" href="/user">User</a>
 </nav>
-{#if user}
+{#if user && !done}
   <form method="POST" action="user?/submit" on:submit|preventDefault={ submit }>
     <div style="display: block;height: 20%;">
       <label for={flagInput}>Submit flag: </label>
@@ -79,14 +97,21 @@ onMount(() => {
       <input type="hidden" id="name" name="user" value={ user }> 
       <button disabled={!flagInput.length}>Submit</button>
       {#if wrongFlag}
-        <small style="color:red;margin-left:10px">Wrong flag!</small>
+        <small style="color:red;margin-left:10px">{flagMessage}</small>
       {/if}
       {#if foundFlag}
-        <small style="color:#00ff41;margin-left:10px">Congratulation, you found one of the flags!</small>
+        <small style="color:#00ff41;margin-left:10px">{flagMessage}</small>
       {/if}
     </div>
   </form>
 {/if}
+{#if user && done}
+<p style="color:#00ff41;margin-top:10px">Congratulations on finding all the flags!</p>
+{/if}
+
+<footer>
+  <small>In compliance with web standards, please be aware that our website utilizes a robots.txt file to guide search engine crawlers on what content to access and index. You can view our robots.txt file <a href="/robots.txt" target="_blank">here</a>.</small>
+</footer>
   
 <slot></slot>
 
