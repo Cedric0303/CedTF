@@ -39,7 +39,6 @@ export const actions = {
 				}
 			}
 			const { score } = usersQuery.rows[0];
-			console.log(score)
 			if (parseInt(score) >= 500) {
 				return {
 					success: true,
@@ -111,7 +110,6 @@ export const actions = {
 				done: false,
 			}
 		}
-		console.log(updateScore.rows[0])
 		const { score } = updateScore.rows[0];
 
 		if (parseInt(score) >= 500) {

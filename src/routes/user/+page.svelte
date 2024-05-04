@@ -52,7 +52,6 @@
       localStorage.removeItem('user');
       localStorage.removeItem('god');
       localStorage.removeItem('done');
-      console.log(god, user)
       return;
     }
     if (returnUser === 'god') {
@@ -60,7 +59,6 @@
     } else {
       userStore.update(() => returnUser);
     }
-    console.log(done)
     if (done) {
       doneStore.update(() => 'true');
     } else {
