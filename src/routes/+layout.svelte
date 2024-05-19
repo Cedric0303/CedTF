@@ -1,10 +1,4 @@
 <script lang=ts>
-import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
-import { inject } from '@vercel/analytics'
-
-injectSpeedInsights();
-inject();
-
 import { deserialize } from '$app/forms';
 import { browser } from "$app/environment";
 import { onMount } from "svelte";
