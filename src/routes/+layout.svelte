@@ -110,7 +110,7 @@ onMount(() => {
 {/if}
 
 <footer>
-  <small>In compliance with web standards, please be aware that our website utilizes a robots.txt file to guide search engine crawlers on what content to access and index. You can view our robots.txt file <a href="/robots.txt" target="_blank">here</a>.</small>
+  <small>In compliance with web standards, please be aware that our website utilizes a robots.txt file to guide search engine crawlers on what content to access and index. Please see our <a href="/robots.txt" target="_blank">robots.txt</a> file for more info.</small>
 </footer>
   
 <slot></slot>
@@ -207,7 +207,7 @@ onMount(() => {
 :global(footer) {
   position: absolute;
   bottom: 0;
-  width: 30%;
+  width: 45%;
   right: 0;
   text-align: right;
   padding-bottom: 20px;
